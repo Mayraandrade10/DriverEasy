@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveEase - Sistema de Gestão</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- TELA DE LOGIN -->
+    <section id="login" class="page-section active login-screen">
+        <div class="login-card-container">
+            <div class="login-header-bg">
+                <div class="login-brand">DriveEase</div>
+                <div class="login-welcome">
+                    <h2>Olá!</h2>
+                    <p>Seja bem-vindo</p>
+                </div>
+            </div>
+            <div class="login-form-box">
+                <h3>Login</h3>
+                <form id="loginForm">
+                    <input type="text" class="form-input" placeholder="E-mail/Id" required>
+                    <input type="password" class="form-input" placeholder="Senha" required>
+                    <a href="#" class="forgot-pass">Esqueceu sua senha?</a>
+                    <button type="submit" class="btn-primary login-btn">Login</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU LATERAL -->
+    <button class="mobile-menu-btn" id="menuToggle" style="display: none;"><i class="ph ph-list"></i></button>
+
+    <aside class="sidebar" id="sidebar" style="display: none;">
+        <div class="brand">DriveEase</div>
+        <div class="user-profile">
+            <div class="avatar"><i class="ph ph-user"></i></div>
+        </div>
+        <nav class="nav-menu">
+            <a href="#" class="active" data-target="dashboard"><i class="ph ph-house"></i> Início</a>
+            <a href="#" data-target="clientes"><i class="ph ph-users"></i> Clientes</a>
+            <a href="#" data-target="veiculos"><i class="ph ph-car"></i> Veículos</a>
+            <a href="#" data-target="locacoes"><i class="ph ph-key"></i> Locações</a>
+            <a href="#" data-target="gestao"><i class="ph ph-wrench"></i> Gestão</a>
+            <a href="#" data-target="pendencias"><i class="ph ph-warning-circle"></i> Pendências</a>
+            <a href="#" id="logoutBtn" style="margin-top: 20px; color: #ffadad;"><i class="ph ph-sign-out"></i> Sair</a>
+        </nav>
+    </aside>
+
+    <main class="content full-width" id="mainContent">
+        <!-- TELA 1: DASHBOARD -->
+        <section id="dashboard" class="page-section">
+            <header class="page-header"><h1>Painel de Controle</h1></header>
+            <section class="quick-actions">
+                <h2>Ações Rápidas</h2>
+                <div class="buttons-container">
+                    <button class="btn-primary" onclick="switchPage('locacoes')"><i class="ph ph-plus"></i> Nova Locação</button>
+                    <button class="btn-secondary" onclick="switchPage('cadastrar-veiculo')">Cadastrar Veículo</button>
+                    <button class="btn-secondary" onclick="switchPage('cadastrar-cliente')">Cadastrar Cliente</button>
+                </div>
+            </section>
+            <section class="summary-cards">
+                <div class="card">
+                    <h3>Veículos Disponíveis</h3>
+                    <div class="card-content">
+                        <i class="ph ph-car-profile"></i>
+                        <p>12</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Locações Ativas</h3>
+                    <div class="card-content">
+                        <i class="ph ph-key"></i>
+                        <p>5</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Pendências Financeiras</h3>
+                    <div class="card-content alert-text">
+                        <i class="ph ph-warning-circle"></i>
+                        <p>R$ 450,00</p>
+                    </div>
+                </div>
+            </section>
+            <section class="fleet-overview">
+                <h2>Visão Geral da Frota</h2>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Modelo/Placa</th><th>Categoria</th><th>Status</th><th>Entrega</th><th>Devolução</th></tr></thead>
+                        <tbody>
+                            <tr><td>Fiat Argo (ABC-1234)</td><td>Hatch</td><td><span class="status-badge available">Disponível</span></td><td>-</td><td>-</td></tr>
+                            <tr><td>Jeep Compass (XYZ-9876)</td><td>SUV</td><td><span class="status-badge rented">Alugado</span></td><td>01/09/2026</td><td>10/09/2026</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <!-- TELA 2: CLIENTES -->
+        <section id="clientes" class="page-section">
+            <header class="page-header"><h1>Lista de Cliente</h1></header>
+            <div class="table-container">
+                <h2>Informações detalhadas</h2>
+                <table>
+                    <thead><tr><th>Cliente</th><th>CPF</th><th>Telefone</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>Gedilson Souza</td><td>123.456.789-01</td><td>(86) 99911-3333</td><td><span class="status-badge available">Regular</span></td></tr>
+                        <tr><td>Roberto Alves</td><td>234.567.890-02</td><td>(86) 98822-4444</td><td><span class="status-badge rented">Pendente</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TELA 3: VEÍCULOS -->
+        <section id="veiculos" class="page-section">
+            <header class="page-header"><h1>Veículos</h1></header>
+            <section class="fleet-overview">
+                <h2>Visão Geral da Frota</h2>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Modelo/Placa</th><th>Categoria</th><th>Status</th><th>Entrega</th><th>Devolução</th></tr></thead>
+                        <tbody>
+                            <tr><td>Fiat Argo (ABC-1234)</td><td>Hatch</td><td><span class="status-badge available">Disponível</span></td><td>-</td><td>-</td></tr>
+                            <tr><td>Toyota Hilux (DEF-5678)</td><td>Picape</td><td><span class="status-badge available">Disponível</span></td><td>-</td><td>-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <!-- TELA 4: CADASTRAR VEÍCULO -->
+        <section id="cadastrar-veiculo" class="page-section">
+            <header class="page-header"><h1>Cadastrar Novo Veículo</h1></header>
+            <form id="formVeiculo" class="form-step" onsubmit="handleFormSubmit(event, 'Veículo cadastrado com sucesso!')">
+                <label>Marca / Modelo</label>
+                <input type="text" class="form-input" placeholder="Ex: Hyundai HB20" required>
+                <label>Placa</label>
+                <input type="text" class="form-input" placeholder="Ex: ABC-1234" required>
+                <label>Categoria</label>
+                <input type="text" class="form-input" placeholder="Ex: Hatch / SUV / Sedan" required>
+                <label>Valor da Diária (R$)</label>
+                <input type="number" step="0.01" class="form-input" placeholder="150.00" required>
+                <button type="submit" class="btn-primary" style="margin-top: 15px;">Salvar Veículo</button>
+            </form>
+        </section>
+
+        <!-- TELA 5: CADASTRAR CLIENTE -->
+        <section id="cadastrar-cliente" class="page-section">
+            <header class="page-header"><h1>Cadastrar Novo Cliente</h1></header>
+            <form id="formCliente" class="form-step" onsubmit="handleFormSubmit(event, 'Cliente cadastrado com sucesso!')">
+                <label>Nome Completo</label>
+                <input type="text" class="form-input" placeholder="Ex: Maria Silva" required>
+                <label>CPF</label>
+                <input type="text" class="form-input" placeholder="000.000.000-00" required>
+                <label>Telefone</label>
+                <input type="text" class="form-input" placeholder="(00) 00000-0000" required>
+                <button type="submit" class="btn-primary" style="margin-top: 15px;">Salvar Cliente</button>
+            </form>
+        </section>
+
+        <!-- TELA 6: LOCAÇÕES (Com Diária Editável e Cálculo Automático) -->
+        <section id="locacoes" class="page-section">
+            <header class="page-header"><h1>Nova Locação</h1></header>
+            <form onsubmit="handleFormSubmit(event, 'Locação confirmada com sucesso!')">
+                <div class="form-step">
+                    <h3>Passo 1: Cliente</h3>
+                    <input type="text" class="form-input" placeholder="Buscar Pelo Nome ou CPF" required>
+                </div>
+                <div class="form-step">
+                    <h3>Passo 2: Veículo</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead><tr><th>Marca/Modelo</th><th>Placa</th><th>Categoria</th><th>Status</th></tr></thead>
+                            <tbody>
+                                <tr><td>Chevrolet Onix Plus</td><td>ABC-1234</td><td>Sedan</td><td><span class="status-badge available">Disponível</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-step form-row">
+                    <div class="col">
+                        <h3>Passo 3: Período</h3>
+                        <label>Data de Início</label>
+                        <input type="date" id="dataInicio" class="form-input" required onchange="calcularTotal()">
+                        
+                        <label>Data de Devolução</label>
+                        <input type="date" id="dataDevolucao" class="form-input" required onchange="calcularTotal()">
+                    </div>
+                    <div class="col totals">
+                        <div style="width: 100%; text-align: right; margin-bottom: 8px;">
+                            <label style="font-size: 0.9rem; color: var(--primary-color); font-weight: 600; display: inline-block; margin-right: 10px;">Valor Diária (R$):</label>
+                            <input type="number" id="valorDiaria" class="form-input" value="150.00" step="0.01" style="width: 140px; display: inline-block; text-align: right; font-weight: bold;" oninput="calcularTotal()" required>
+                        </div>
+                        <p style="margin-top: 5px;">Total Estimado (R$): <strong id="totalEstimado" style="color: var(--primary-color);">R$ 450,00</strong></p>
+                        <button type="submit" class="btn-primary" style="background-color: #f59e0b; margin-top: 10px;">Confirmar Locação</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- TELA 7: GESTÃO -->
+        <section id="gestao" class="page-section">
+            <header class="page-header"><h1>Gestão da Frota</h1></header>
+            <div class="form-step">
+                <label>Pesquisar Veículo</label>
+                <input type="text" class="form-input" placeholder="Buscar Pelo Nome ou CPF">
+            </div>
+            <div class="table-container">
+                <h2>Veículos Disponíveis</h2>
+                <table>
+                    <thead><tr><th>Marca/Modelo</th><th>Placa</th><th>Categoria</th><th>Ação</th></tr></thead>
+                    <tbody>
+                        <tr><td>Chevrolet Onix Plus</td><td>ABC-1234</td><td>Sedan</td><td><button class="btn-secondary" style="padding:4px 10px;">Gerenciar</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- TELA 8: PENDÊNCIAS -->
+        <section id="pendencias" class="page-section">
+            <header class="page-header"><h1>Pendências Financeiras</h1></header>
+            <section class="summary-cards">
+                <div class="card">
+                    <h3>Total Pendente</h3>
+                    <div class="card-content alert-text"><p>R$ 450,00</p></div>
+                </div>
+                <div class="card">
+                    <h3>Clientes em Atraso</h3>
+                    <div class="card-content"><p>3</p></div>
+                </div>
+            </section>
+            <div class="table-container">
+                <h2>Tabela de Pendências</h2>
+                <table>
+                    <thead><tr><th>Cliente</th><th>Veículo</th><th>Dias em Atraso</th><th>Valor Devido</th><th>Status</th><th>Ação</th></tr></thead>
+                    <tbody>
+                        <tr><td>Gedilson Souza</td><td>Chevrolet Onix Plus</td><td>5 dias</td><td>R$ 150,00</td><td><span class="status-badge rented">Pendente</span></td><td>Cobrar</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL DE CONFIRMAÇÃO -->
+    <div id="modalConfirmacao" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <i class="ph ph-check-circle modal-icon"></i>
+            <h3 id="modalMessage">Sucesso!</h3>
+            <p>Operação realizada com sucesso no sistema.</p>
+            <button class="btn-primary" onclick="fecharModal()">OK</button>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
